@@ -15,8 +15,8 @@ class MovieController extends Controller
     public function index()
     {
       $movies = Movie::all();
-      $linda_test = 'Linda'; 
-      dd($movies);
+
+      return view('movies',compact('movies'));
 
     }
 
@@ -47,9 +47,19 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Movie $movie)
     {
-        //
+        // Forma esplicita
+        // $movie = Movie::find($id);
+        // oppure
+        // $movies = Movie::where('id', $id)->first();
+        // e poi se l'array è vuoto da errore:
+        // if(empty($movie)) {
+        //   abort('404');
+        // }
+        // dd($movie);
+
+        return view('show',compact('movie'));
     }
 
     /**
